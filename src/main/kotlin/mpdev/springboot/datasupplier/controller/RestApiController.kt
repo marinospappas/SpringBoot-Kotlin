@@ -9,9 +9,6 @@ import org.springframework.web.bind.annotation.RestController
 class RestApiController(@Autowired var eventsList: List<Events>) {
 
     @GetMapping("/events/", produces = ["application/json"])
-    fun getAllEvents(): Iterable<Events> {
-        eventsList.forEach{println(it)}
-        return eventsList
-    }
+    fun getAllEvents(): Iterable<Events> = eventsList
 
 }
