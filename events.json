@@ -1,0 +1,10 @@
+[
+  {"id": 1,"department":"IB","category":"application down","region":"CH", "eventDetails":[
+    {"host":"chp009981","description":"statistics processor","criticality":"Warning","effectiveDate": "2023-05-01"},
+    {"host":"chp101002","description":"rule engine","criticality":"Critical","effectiveDate": "2023-04-15"}]},
+  {"id": 2,"department":"WM","category":"disk full","region":"AS", "eventDetails":[
+    {"host":"asu021538","description":"free space 15%","criticality":"Warning","effectiveDate": "2023-03-29"}]},
+  {"id": 3,"department":"IB","category":"memory usage","region":"UK", "eventDetails":[
+    {"host":"gbp100134","description":"usage 70%","criticality":"Warning","effectiveDate": "2023-04-21"}]},
+  {"id": 4,"department":"IB","category":"kafka queue depth","region":"CH", "eventDetails":[]}
+]
