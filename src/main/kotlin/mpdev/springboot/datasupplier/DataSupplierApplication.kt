@@ -13,8 +13,6 @@ class DataSupplierApplication
 
 fun main(args: Array<String>) {
     runApplication<DataSupplierApplication>(*args) {
-        val properties = Properties()
-        properties["server.port"] = 9090
-        setDefaultProperties(properties)
+        setDefaultProperties(Properties().also { p -> p["server.port"] = 9090 })
     }
 }
