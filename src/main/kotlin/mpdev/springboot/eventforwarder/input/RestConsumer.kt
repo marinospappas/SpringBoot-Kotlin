@@ -29,8 +29,7 @@ class RestConsumer(val restTemplate: RestTemplate,
             dataRecordRepository.deleteAll()
             inputRecords.toList().forEach{ record ->
 
-                if (record.inputRecordDetails == null
-                ||  record.inputRecordDetails!!.isEmpty())
+                if (record.inputRecordDetails == null || record.inputRecordDetails!!.isEmpty())
                     record.inputRecordDetails = listOf(InputRecordAllOk.getDetail())
 
                 for (index in 0 until record.inputRecordDetails!!.size) {
