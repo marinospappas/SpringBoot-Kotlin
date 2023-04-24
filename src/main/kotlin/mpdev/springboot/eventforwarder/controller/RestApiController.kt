@@ -25,16 +25,8 @@ class RestApiController(var dataRecordRepository: DataRecordRepository) {
     }
 
     @GetMapping("/region/{region}")
-    fun getEventsByRegion(@PathVariable region: String): Iterable<DataRecord> {
-        val dataList: List<DataRecord> = dataRecordRepository.findAllByRegion(region)
-        log.info("controller read {} record(s) from db", dataList.size)
-        return dataList
-    }
+    fun getEventsByRegion(@PathVariable region: String) = dataRecordRepository.findAllByRegion(region)
 
     @GetMapping("/department/{department}")
-    fun getEventsByDepartment(@PathVariable department: String): Iterable<DataRecord> {
-        val dataList: List<DataRecord> = dataRecordRepository.findAllByDepartment(department)
-        log.info("controller read {} record(s) from db", dataList.size)
-        return dataList
-    }
+    fun getEventsByDepartment(@PathVariable department: String) = dataRecordRepository.findAllByDepartment(department)
 }

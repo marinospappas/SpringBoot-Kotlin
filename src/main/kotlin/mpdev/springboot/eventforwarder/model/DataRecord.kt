@@ -13,4 +13,5 @@ data class DataRecord(
     var effectiveDate: String,
     var criticality: String,
     var region: String,
-    var department: String)
+    var department: String
+)

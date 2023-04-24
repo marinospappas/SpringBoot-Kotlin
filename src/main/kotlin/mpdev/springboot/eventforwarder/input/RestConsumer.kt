@@ -11,8 +11,9 @@ import org.springframework.web.client.RestTemplate
 
 @Component
 class RestConsumer(val restTemplate: RestTemplate,
+                   @Value("\${events.provider.url}") val providerUrl: String,
                    val dataRecordRepository: DataRecordRepository,
-                   @Value("\${events.provider.url}") val providerUrl: String) {
+                   val inputRecordConverter: InputRecordConverter) {
 
     companion object {
         private val log: Logger = LoggerFactory.getLogger(this::class.java)
@@ -34,25 +35,11 @@ class RestConsumer(val restTemplate: RestTemplate,
 
                 for (index in 0 until record.inputRecordDetails!!.size) {
                     val detail: InputRecordDetails = record.inputRecordDetails!![index]
-                    dataRecordRepository.save(getDataRecordFromInput(record, detail))
+                    dataRecordRepository.save(inputRecordConverter.convert(record, detail))
                     ++dataRecordCount
                 }
             }
             log.info("sampler added {} record(s) to db", dataRecordCount)
         }
     }
-
-    private fun getDataRecordFromInput(record: InputRecord, detail: InputRecordDetails): DataRecord =
-        DataRecord(id = getUniqueId(record, detail),
-            category = record.category,
-            region = record.region,
-            department = record.department,
-            host = detail.host,
-            description = detail.description,
-            criticality = detail.criticality,
-            effectiveDate = detail.effectiveDate)
-
-    private fun getUniqueId(record: InputRecord, detail: InputRecordDetails): String =
-        String.format("%x", ("${record.id}${record.category}${record.region}${record.department}${detail.host}" +
-                "${detail.description}${detail.criticality}${detail.effectiveDate}").hashCode())
-}
+ }
