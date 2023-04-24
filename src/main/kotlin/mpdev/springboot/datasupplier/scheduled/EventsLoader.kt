@@ -6,11 +6,10 @@ import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.beans.factory.annotation.Value
+import org.springframework.core.io.ClassPathResource
 import org.springframework.scheduling.annotation.Scheduled
 import org.springframework.stereotype.Component
 
-import java.nio.file.Files
-import java.nio.file.Path
 import java.util.Arrays
 
 @Component
@@ -28,7 +27,7 @@ class EventsLoader(@Autowired var eventsList: MutableList<Events>) {
         log.info("loading input file {}", inputFile)
         val objectMapper = ObjectMapper()
         val events: Array<Events> =
-            objectMapper.readValue(Files.readAllBytes(Path.of(inputFile)), Array<Events>::class.java)
+            objectMapper.readValue(ClassPathResource(inputFile).inputStream.readAllBytes(), Array<Events>::class.java)
         eventsList.clear()
         eventsList.addAll(Arrays.stream(events).toList())
     }
