@@ -7,7 +7,7 @@ import mpdev.springboot.eventforwarder.model.InputRecord
 
 object TestData {
 
-    const val INPUT_TEST_DATA_JSON_UNIQUE = """
+    private const val INPUT_TEST_DATA_JSON_UNIQUE = """
             [
                 {"id": 1,"category":"application down","eventDetails":[
                     {"host":"chp009981","description": "statistics processor","criticality":"Warning","effectiveDate": "2023-05-01"},
@@ -26,7 +26,7 @@ object TestData {
             ]
             """
 
-    const val OUTPUT_TEST_DATA_JSON = """
+    private const val OUTPUT_TEST_DATA_JSON = """
             [
                 {"category":"application down","host":"chp009981","description":"statistics processor","effectiveDate":"2023-05-01","criticality":"Warning","region":"CH","department":"IB"},
                 {"category":"application down","host":"chu023815","description":"rule engine","effectiveDate":"2023-05-30","criticality":"Critical","region":"CH","department":"IB"},
@@ -36,7 +36,7 @@ object TestData {
             ]
             """
 
-    const val INPUT_TEST_DATA_JSON_DUPLICATE = """
+    private const val INPUT_TEST_DATA_JSON_DUPLICATE = """
             [
                 {"id": 1,"department":"IB","category":"application down","region":"CH", "eventDetails":[
                     {"host":"chp009981","description": "statistics processor","criticality":"Warning","effectiveDate": "2023-05-01"},
@@ -49,7 +49,7 @@ object TestData {
             ]
             """
 
-    const val INPUT_TEST_DATA_JSON_NO_DETAILS = """
+    private const val INPUT_TEST_DATA_JSON_NO_DETAILS = """
             [
                 {"id": 1,"department":"IB","category":"application down","region":"CH", "eventDetails":[]},
                 {"id": 2,"department":"WM","category":"application down","region":"AS" }
